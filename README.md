@@ -83,7 +83,7 @@ yarn deploy-actions
 
 ### Audio input/output is not working
 Probably because of wrong device setttings.
-You can configure mic and speaker device in config.ts with anything valid supported by arecord, for example:
+You can configure mic and speaker device in config.ts with anything valid supported by arecord and aplay, for example:
 ```typescript
     speaker: {
         channels: 1,
