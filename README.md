@@ -63,6 +63,11 @@ To start the assistant:
 ```bash
 yarn start
 ```
+## Customizing Assitant
+Assistant language can be configured in config.ts. Note that custom device actions provided are localized.
+You can set google assistant voice in google actions console. It can also be configured on Assistant Android APP if you are using the same account you used to create the project.
+Hotword can be configured. You can use any hotword included in /resources (Alexa, Jarvis, Snowboy) by setting in config.ts. Refer to Snowboy's Repo for custom models.
+
 ## Customizing actions
 A few custom device example actions are provided. Each action is defined in two places. First, a definition for the actions must be set in actions.en.json **AND** actions.es.json. If you only need one language, you must edit package.json actions with proper configuration. Then, in src/actions, the .ts filename must match the pattern 
 ```typescript
