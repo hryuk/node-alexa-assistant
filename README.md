@@ -6,8 +6,15 @@ A simple daemon for runing [Google Assitant Service](https://developers.google.c
 ## Techs behind
 + [snowboy](https://github.com/Kitt-AI/snowboy) Alexa hotword detection
 + [google-assistant](https://github.com/endoplasmic/google-assistant) Google Assistant bindings for node
-+ [node-sepeaker](https://github.com/TooTallNate/node-speaker#readme) Speaker for node
++ [node-speaker](https://github.com/TooTallNate/node-speaker#readme) Speaker for node
 + [mic](https://github.com/ashishbajaj99/mic2) Microphone for node
+
+# Dependencies
++ For mic ```alsa-base alsa-utils```
++ For node-speaker ```libasound2-dev```
++ For snowboy ```python-pyaudio python3-pyaudio sox libmagic-dev libatlas-base-dev pyaudio```
+
+Snowboy may be a bit trickier to install. Refer to his repo for instructions to build the node module from source [README](https://github.com/kitt-ai/snowboy). Also, note that we are using a [unmerged patch](https://github.com/Kitt-AI/snowboy/pull/537) to allow it to be compiled on Node>8.
 
 ## Included custom device actions
 + Change pvr channel in kodi
@@ -65,6 +72,26 @@ A few custom device example actions are provided. Each action is defined in two 
 Note that you need to update google actions project whenever the json definition is modified:
 ```
 yarn deploy-actions
+```
+
+## Troubleshooting
+
+### Audio input/output is not working
+Probably because of wrong device setttings.
+You can configure mic and speaker device in config.ts with anything valid supported by arecord, for example:
+```typescript
+    speaker: {
+        channels: 1,
+        bitDepth: 16,
+        sampleRate: 16000,
+        device: 'plughw:0,0'
+    },
+    mic: {
+        rate: '16000',
+        channels: '1',
+        debug: true,
+        device: 'plughw:3,0'
+    },
 ```
 
 ## Issue Reporting

@@ -33,13 +33,14 @@ let config = {
     speaker: {
         channels: 1,
         bitDepth: 16,
-        sampleRate: 16000
+        sampleRate: 16000,
+        //device: 'plughw:1,0'
     },
     mic: {
         rate: '16000',
         channels: '1',
         debug: true,
-        device: '' // plughw:1,0
+        //device: 'plughw:1,0'
     },
     kodi: {
         address: '127.0.0.1',
