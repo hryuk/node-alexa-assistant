@@ -1,0 +1,274 @@
+{
+    "locale": "en",
+    "actions": [
+        {
+            "name": "node-alexa.actions.light-on",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "node-alexa.intents.light-on",
+                "parameters": [
+                    {
+                        "name": "light",
+                        "type": "Light"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "Turn on the $Light:light"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Done"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "node-alexa.commands.light-on"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "node-alexa.actions.light-off",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "node-alexa.intents.light-off",
+                "parameters": [
+                    {
+                        "name": "light",
+                        "type": "Light"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "Turn off the $Light:light"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Done"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "node-alexa.commands.light-off"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "node-alexa.actions.channel",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "node-alexa.intents.channel",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "type": "SchemaOrg_Number"
+                    },
+                    {
+                        "name": "play",
+                        "type": "Play"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "$Play:play the channel $SchemaOrg_Number:number"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": ""
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "node-alexa.commands.channel",
+                                    "params": {
+                                        "number": "$number"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "node-alexa.actions.youtube",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "node-alexa.intents.youtube",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "type": "SchemaOrg_Text"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "Search $SchemaOrg_Text:query on youtube"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Searching..."
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "node-alexa.commands.youtube",
+                                    "params": {
+                                        "query": "$query"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "node-alexa.actions.shutdown",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "node-alexa.intents.shutdown",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "type": "SchemaOrg_Number"
+                    },
+                    {
+                        "name": "unit",
+                        "type": "TimeUnit"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "Turn off (TV)? in $SchemaOrg_Number:number $TimeUnit:unit"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Automatic shutdown scheduled"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "node-alexa.commands.shutdown",
+                                    "params": {
+                                        "number": "$number",
+                                        "unit": "$unit"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "$Light",
+            "entities": [
+                {
+                    "key": "LIGHT",
+                    "synonyms": [
+                        "bulb"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "$Play",
+            "entities": [
+                {
+                    "key": "PLAY",
+                    "synonyms": [
+                        "search"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "$TimeUnit",
+            "entities": [
+                {
+                    "key": "MINUTES",
+                    "synonyms": [
+                        "minute"
+                    ]
+                },
+                {
+                    "key": "HOURS",
+                    "synonyms": [
+                        "hour"
+                    ]
+                }
+            ]
+        }
+    ]
+}

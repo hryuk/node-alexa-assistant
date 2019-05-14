@@ -1,0 +1,29 @@
+{
+  "name": "node-alexa-assistant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn build && node dist/index.js",
+    "update-actions": "./actions/gactions update --action_package actions/actions.en.json --action_package actions/actions.es.json --project node-alexa-assistant",
+    "test-actions": "./actions/gactions test --action_package actions/actions.en.json --action_package actions/actions.es.json --project node-alexa-assistant",
+    "deploy-actions": "yarn update-actions && yarn test-actions"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "google-assistant": "^0.5.4",
+    "kodi-ws": "^2.4.3",
+    "mic": "^2.1.2",
+    "mqtt": "^2.18.8",
+    "snowboy": "git+https://github.com/Dabolus/snowboy.git",
+    "speaker": "^0.4.2",
+    "wav": "^1.0.2",
+    "youtube-node": "^1.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "typescript": "^3.4.5"
+  }
+}

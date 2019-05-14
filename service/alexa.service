@@ -1,0 +1,13 @@
+[Unit]
+Description=Google Assistant Service
+Requires=pulseaudio.socket
+After=network.target
+
+[Service]
+Environment=NODE_PORT=3001
+Type=simple
+ExecStart=/home/zero/Scripts/alexa-init.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
