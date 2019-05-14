@@ -1,7 +1,7 @@
 # Node Alexa Assistant
 
 ## Introduction
-A simple daemon for runing [Google Assitant Service](https://developers.google.com/assistant/sdk/guides/service/python/) with Snowboy's hotword detection with support for [custom device actions](https://developers.google.com/assistant/sdk/guides/service/python/extend/custom-actions).
+A simple daemon for runing [Google Assitant Service](https://developers.google.com/assistant/sdk/guides/service/python/) with Snowboy's hotword detection with support for [custom device actions](https://developers.google.com/assistant/sdk/guides/service/python/extend/custom-actions). Only Linux x86_64 is tested.
 
 ## Techs behind
 + [snowboy](https://github.com/Kitt-AI/snowboy) Alexa hotword detection
