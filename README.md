@@ -14,11 +14,11 @@ A simple daemon for runing [Google Assitant Service](https://developers.google.c
 + For node-speaker ```libasound2-dev```
 + For snowboy ```python-pyaudio python3-pyaudio sox libmagic-dev libatlas-base-dev pyaudio```
 
-Snowboy may be a bit trickier to install. Refer to his repo for instructions to build the node module from source [README](https://github.com/kitt-ai/snowboy). Also, note that we are using a [unmerged patch](https://github.com/Kitt-AI/snowboy/pull/537) to allow it to be compiled on Node>8.
+Snowboy can be tricky to install. Refer to his repo for instructions to build the node module from source [README](https://github.com/kitt-ai/snowboy). Also, note that we are using a [unmerged patch](https://github.com/Kitt-AI/snowboy/pull/537) to allow it to be compiled on Node>8.
 
 ## Included custom device actions
-+ Change pvr channel in kodi
-+ Turn on and off lights over mqtt
++ Change PVR channel in kodi
++ Turn on and off light over mqtt
 + Scheduled shutdown
 + Play youtube query in kodi
 
@@ -40,7 +40,7 @@ https://developers.google.com/assistant/sdk/guides/service/python/embed/config-d
 Then, download the credentials .json file from here:
 https://console.developers.google.com/apis/credentials?project=node-alexa-assistant&folder&organizationId
 
-And save it in 
+And save as 
 ```
 config/client_secret.json
 ```
