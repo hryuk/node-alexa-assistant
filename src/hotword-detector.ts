@@ -1,44 +1,45 @@
-const Detector = require('snowboy').Detector;
-const Models = require('snowboy').Models;
-import { EventEmitter } from 'events';
+import Snowboy from 'snowboy';
+const Detector = Snowboy.Detector;
+const Models = Snowboy.Models;
 import config from './config';
 
 
-export default class HotwordDetector extends EventEmitter {
+export default class HotwordDetector {
 
     micInstance: any;
     micInputStream: any;
 
     constructor(micInstance: any) {
-        super();
         this.micInstance = micInstance;
         this.micInputStream = this.micInstance.getAudioStream();
 
     }
 
     detectHotword() {
+        return new Promise((resolve, reject) => {
+            const models = new Models();
 
-        const models = new Models();
+            models.add(config.snowboy.model);
 
-        models.add(config.snowboy.model);
+            let detector_config = config.snowboy.detector;
+            detector_config.models = models;
+            const detector = new Detector(detector_config);
 
-        let detector_config = config.snowboy.detector;
-        detector_config.models = models;
-        const detector = new Detector(detector_config);
+            detector.on('error', () => {
+                console.log('error');
+                this.micInputStream.unpipe();
+                reject();
+            });
 
-        detector.on('error', () => {
-            console.log('error');
-            this.micInputStream.unpipe();
+            detector.on('hotword', (index: any, hotword: any, buffer: any) => {
+                this.micInputStream.unpipe();
+                resolve();
+            });
+
+
+            this.micInputStream.pipe(detector);
+
+            console.log('Waiting for hotword');
         });
-
-        detector.on('hotword', (index: any, hotword: any, buffer: any) => {
-            this.micInputStream.unpipe();
-            this.emit('hotword');
-        });
-
-
-        this.micInputStream.pipe(detector);
-
-        console.log('Waiting for hotword');
     }
 };

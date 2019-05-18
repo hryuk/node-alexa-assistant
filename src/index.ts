@@ -10,10 +10,9 @@ import _Speaker from 'speaker';
 let micInstance = mic(config.mic);
 micInstance.start();
 
-const startDetection = () => {
+const startDetection = async () => {
     const hotwordDetector = new HotwordDetector(micInstance);
-    hotwordDetector.on('hotword', () => {
-
+    while (await hotwordDetector.detectHotword()) {
         let file = fs.createReadStream('resources/ding.wav');
         let reader = new wav.Reader();
         reader.on('format', (format: any) => {
@@ -23,14 +22,8 @@ const startDetection = () => {
         file.pipe(reader);
 
         const assistant = new Assistant(micInstance);
-        assistant.startAssistant(() => {
-            startDetection();
-
-        });
-    });
-
-    hotwordDetector.detectHotword();
+        await assistant.startAssistant();
+    }
 }
-
 
 startDetection();
