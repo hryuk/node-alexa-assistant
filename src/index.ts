@@ -21,8 +21,12 @@ const startDetection = async () => {
 
         file.pipe(reader);
 
-        const assistant = new Assistant(micInstance);
-        await assistant.startAssistant();
+        try {
+            const assistant = new Assistant(micInstance);
+            await assistant.startAssistant();
+        } catch (e) {
+            console.log(e);
+        }
     }
 }
 

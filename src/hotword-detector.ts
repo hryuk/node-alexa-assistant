@@ -1,6 +1,5 @@
-import Snowboy from 'snowboy';
-const Detector = Snowboy.Detector;
-const Models = Snowboy.Models;
+const Detector = require('snowboy').Detector;
+const Models = require('snowboy').Models;
 import config from './config';
 
 
@@ -28,12 +27,12 @@ export default class HotwordDetector {
             detector.on('error', () => {
                 console.log('error');
                 this.micInputStream.unpipe();
-                reject();
+                resolve(false);
             });
 
             detector.on('hotword', (index: any, hotword: any, buffer: any) => {
                 this.micInputStream.unpipe();
-                resolve();
+                resolve(true);
             });
 
 
